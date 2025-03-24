@@ -1,0 +1,12 @@
+### Use token to access API
+GET  http://localhost:8070/api/user/test
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwaHVvY2JrMjIiLCJpYXQiOjE3NDI4MTk0NzMsImV4cCI6MTc0MjgxOTU4MX0.2zM35QhClD69fDam87iM_ZT-M3SZSDdhwvxGG7Jwg14
+###
+
+POST  http://localhost:8070/api/user/login
+Content-Type: application/json
+
+{
+  "username": "phuocbk22",
+  "password": "admin"
+}
