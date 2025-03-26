@@ -45,7 +45,8 @@ public class UserController {
 
     // Test api
     @GetMapping("/test")
-    public String test() {
+    public String test() throws InterruptedException {
+        Thread.sleep(5000);
         return "Test";
     }
 

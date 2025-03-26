@@ -8,11 +8,6 @@ public class IotApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(IotApplication.class, args);
-
-		// DB testing
-
-		// Initilize service
-
 	}
 
 }
