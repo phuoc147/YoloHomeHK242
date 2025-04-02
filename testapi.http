@@ -5,6 +5,8 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwaHVvY2JrMjIiLCJpYXQiOjE3N
 GET  http://localhost:8070/api/user/test
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwaHVvY2JrMjIiLCJpYXQiOjE3NDI5ODAyMDcsImV4cCI6MTc0Mjk4MDMxNX0.Ty1FHCWyfW2TWgrROu3MVxzpNpognQQcuqKutcc7Yww
 ###
+POST http://localhost:8070/api/face_recognition
+###
 POST  http://localhost:8070/api/voice-command
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwaHVvY2JrMjIiLCJpYXQiOjE3NDI5ODAyMDcsImV4cCI6MTc0Mjk4MDMxNX0.Ty1FHCWyfW2TWgrROu3MVxzpNpognQQcuqKutcc7Yww
 Content-Type: application/json
@@ -13,10 +15,33 @@ Content-Type: application/json
   "command": "on the light"
 }
 ###
-POST  http://localhost:8070/api/user/login
+POST  http://localhost:8070/api/home/add
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwaHVvY2JrMjIiLCJpYXQiOjE3NDMxNTUxMzcsImV4cCI6MTc0MzE1NTI0NX0.SixazRp18WBVmFVkvHKHSnuqGwz9_wSLKi6U9ZCLKmA
+Content-Type: application/json
+
+{
+  "address":"HCM",
+  "hometype":"apartment"
+}
+###
+GET  http://localhost:8070/api/home/test
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwaHVvY2JrMjIiLCJpYXQiOjE3NDMxNTUzOTksImV4cCI6MTc0MzE1NTUwN30.71FU4Ihxk9F36X4gB4vU_6fFbY0hoT6kBL3sEGmEuWQ
+
+
+### Employee
+POST  http://localhost:8070/api/employee/adduser
 Content-Type: application/json
 
 {
   "username": "phuocbk22",
-  "password": "admin"
+  "password": "admin",
+  "homeId": "1"
+}
+### ADD USER
+POST  http://localhost:8070/api/employee/addhome
+Content-Type: application/json
+
+{
+  "address":"Dong nai",
+  "hometype":"apartment"
 }

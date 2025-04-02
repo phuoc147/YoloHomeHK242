@@ -32,3 +32,8 @@ build/
 ### VS Code ###
 .vscode/
 
+### Application Properties ###
+*.properties
+
+### redis
+/redis-data

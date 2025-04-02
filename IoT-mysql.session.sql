@@ -1,3 +1,2 @@
 SELECT *
-from users
-where username = 'phuocbk22';
+from user;

@@ -1,7 +1,5 @@
 package iot.model;
 
-import java.time.LocalDateTime;
-
 import org.hibernate.annotations.CreationTimestamp;
 
 import jakarta.persistence.CascadeType;
@@ -22,27 +20,22 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name = "users")
-public class User {
+@Table(name = "temperature")
+public class Temperature {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long userId;
-
-    private String username;
-    private String name;
-    private String email;
-    private String password;
-    private String role;
-    private String address;
-    private String phone;
+    private Long temperatureId;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "home_id", referencedColumnName = "homeId")
-    private Home home;
+    @JoinColumn(name = "device_id", referencedColumnName = "deviceId")
+    private Device device;
+
+    private String temperatureValue;
+    private String humidityValue;
+    private String status;
 
     @CreationTimestamp
-    private LocalDateTime createdDate;
+    private String createdDate;
     @CreationTimestamp
-    private LocalDateTime updatedDate;
-
+    private String updatedDate;
 }
