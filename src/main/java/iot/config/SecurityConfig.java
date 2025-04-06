@@ -1,4 +1,4 @@
-package iot.middleware;
+package iot.config;
 
 import java.io.IOException;
 import java.util.Collections;
@@ -83,6 +83,12 @@ class SecurityFilter extends BasicAuthenticationFilter {
         HttpServletRequest httpRequest = (HttpServletRequest) request;
         HttpServletResponse httpResponse = (HttpServletResponse) response;
 
+        // Check if a valid authentication already exists
+        if (SecurityContextHolder.getContext().getAuthentication() != null) {
+            chain.doFilter(request, response);
+            System.out.println("Already authenticated, skipping filter.");
+            return;
+        }
         String authHeader = httpRequest.getHeader("Authorization");
         if (authHeader != null && authHeader.startsWith("Bearer ")) {
             String token = authHeader.substring(7);

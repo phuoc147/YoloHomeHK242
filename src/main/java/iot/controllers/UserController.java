@@ -2,13 +2,15 @@ package iot.controllers;
 
 import org.springframework.web.bind.annotation.RestController;
 
-import iot.middleware.JwtUtils;
+import iot.config.JwtUtils;
 import iot.model.User;
 import iot.service.PersonalInfoService;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,6 +21,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 class loginDTO {
     private String password;
     private String username;
+}
+
+@Builder
+class loginResponse {
+    private String token;
+    private String message;
+    private String error;
 }
 
 @RestController
@@ -32,9 +41,17 @@ public class UserController {
     JwtUtils jwtUtils;
 
     @PostMapping("/login")
-    public String login(@RequestBody loginDTO loginDTO) {
+    public ResponseEntity<loginResponse> login(@RequestBody loginDTO loginDTO) {
         System.out.println(loginDTO.getUsername());
-        return userService.verifyAccount(loginDTO.getUsername(), loginDTO.getPassword());
+        String token = userService.verifyAccount(loginDTO.getUsername(), loginDTO.getPassword());
+        if (token == null) {
+            return ResponseEntity.status(401)
+                    .body(loginResponse.builder().message("Login failed").error("Invalid username or password")
+                            .build());
+        } else {
+            return ResponseEntity.ok()
+                    .body(loginResponse.builder().message("Login successfully").token(token).build());
+        }
     }
 
     // Test api

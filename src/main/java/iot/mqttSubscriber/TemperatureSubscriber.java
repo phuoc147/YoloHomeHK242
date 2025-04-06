@@ -2,8 +2,24 @@ package iot.mqttSubscriber;
 
 import org.eclipse.paho.client.mqttv3.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Component;
+
+import iot.config.JsonConverter;
+import iot.model.Device;
+import iot.model.Temperature;
+import iot.service.SensorRecordingService;
 import jakarta.annotation.PostConstruct;
+import lombok.Getter;
+
+//Class for subcribed data
+@Getter
+class SubscribedTemperatureData {
+    private String device_id;
+    private Double temperature;
+    // Getters and setters
+}
 
 @Component
 public class TemperatureSubscriber {
@@ -11,32 +27,45 @@ public class TemperatureSubscriber {
     @Autowired
     private MqttClient mqttClient;
 
-    // @Autowired
-    // private StringRedisTemplate redisTemplate;
+    @Autowired
+    private RedisTemplate<String, String> redisTemplate;
+
+    @Autowired
+    private SensorRecordingService sensorRecordingService;
+
+    @Autowired
+    private JsonConverter jsonConverter;
 
     @PostConstruct
     public void subscribe() throws MqttException {
         try {
-            mqttClient.subscribe("temperature", (topic, message) -> {
+            // Subscribe to the topic "temperature/device_id"
+            mqttClient.subscribe("temperature", 1, (topic, message) -> {
                 String payload = new String(message.getPayload());
                 System.out.println("Received message on topic: " + topic);
-                System.out.println("Received message: " + payload);
+                System.out.println("Payload: ");
 
-                // Expected message format: "device123:26.5"
-                // String[] parts = payload.split(":");
-                // if (parts.length != 2)
-                // return;
+                SubscribedTemperatureData subscribedTemperatureData = jsonConverter.getObjectMapper()
+                        .readValue(payload, SubscribedTemperatureData.class);
+                String deviceId = subscribedTemperatureData.getDevice_id();
+                Double temperatureValue = subscribedTemperatureData.getTemperature();
+                System.out.println("Device ID: " + deviceId);
+                System.out.println("Temperature: " + temperatureValue);
+                Temperature temperature = Temperature.builder()
+                        .device(Device.builder().deviceId(Long.parseLong(deviceId)).build())
+                        .unit("Celsius")
+                        .value(temperatureValue)
+                        .build();
+                temperature.setCreatedDate(String.valueOf(System.currentTimeMillis()));
+                // Store the temperature in db
+                sensorRecordingService.recordTemperature(temperature);
 
-                // String deviceId = parts[0];
-                // String temperature = parts[1];
+                // Store in Redis
+                redisTemplate.opsForValue().set(deviceId, jsonConverter.getObjectMapper()
+                        .writeValueAsString(temperature));
 
-                // // Store latest temperature in Redis
-                // String redisKey = "temperature:" + deviceId;
-
-                // redisTemplate.opsForValue().set(redisKey, temperature);
             });
         } catch (Exception e) {
-            // TODO: handle exception
             System.out.println("Error subscribing to topic: " + e.getMessage());
         }
     }

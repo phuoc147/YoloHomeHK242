@@ -1,4 +1,4 @@
-package iot.middleware;
+package iot.config;
 
 import org.eclipse.paho.client.mqttv3.MqttClient;
 import org.eclipse.paho.client.mqttv3.MqttConnectOptions;

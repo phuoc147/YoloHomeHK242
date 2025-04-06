@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import dto.DeviceDto.AddDeviceRequestDto;
+import iot.model.Device;
 import iot.model.Home;
 import iot.model.User;
 import iot.service.PersonalInfoService;
@@ -50,5 +52,17 @@ public class EmployeeController {
                 .build();
         personalInfoService.createUser(user, Long.parseLong(userDTO.getHomeId()));
         return "User added successfully";
+    }
+
+    @PostMapping("/adddevice")
+    public String addDevice(@RequestBody AddDeviceRequestDto deviceDTO) {
+        Device device = Device.builder()
+                .deviceName(deviceDTO.getDeviceName())
+                .deviceNumber(deviceDTO.getDeviceNumber())
+                .deviceType(deviceDTO.getDeviceType())
+                .deviceStatus(deviceDTO.getDeviceStatus())
+                .build();
+        personalInfoService.createDevice(device, Long.parseLong(deviceDTO.getHomeId()));
+        return "Device added successfully";
     }
 }

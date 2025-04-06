@@ -1,11 +1,16 @@
 package iot.controllers;
 
+import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -16,16 +21,24 @@ public class FaceRecognitionController {
     private final RestTemplate restTemplate = new RestTemplate();
 
     @PostMapping("/face_recognition")
-    public String startFaceRecognition(@RequestBody UserRequest request) {
-        String pythonServerUrl = "http://localhost:8000/connect";
+    public ResponseEntity<ApiResponse<Object>> startFaceRecognition() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName(); // Get the username from the security context
+        if (username == null) {
+            return ResponseEntity.status(401)
+                    .body(ApiResponse.<Object>builder().message("Not valid to confirm face recognition").build());
+        }
+        // Send user name to FASTAPI through api /face_recognition?username={username}
+        String url = "http://localhost:8000/face_recognition/?username=" + username;
+        try {
+            ResponseEntity<String> response = restTemplate.postForEntity(url, null, String.class);
+            return ResponseEntity.ok()
+                    .body(ApiResponse.<Object>builder().message("Success to confirm face recognition").build());
+        } catch (Exception e) {
+            return ResponseEntity.status(401)
+                    .body(ApiResponse.<Object>builder().message("Fail to confirm face recognition").build());
+        }
 
-        // Get ip of user
-        FaceRecognitionDTO faceRecognitionDTO = new FaceRecognitionDTO();
-        faceRecognitionDTO.setUser_ip(request.getWsUrl().split(":")[1].substring(2));
-
-        // Send user ip to Python server
-        restTemplate.postForObject(pythonServerUrl, faceRecognitionDTO, String.class);
-        return "Face recognition started";
     }
 
 }
@@ -33,12 +46,5 @@ public class FaceRecognitionController {
 @Getter
 @Setter
 class UserRequest {
-    public String userId;
-    public String wsUrl;
-}
-
-@Getter
-@Setter
-class FaceRecognitionDTO {
-    public String user_ip;
+    public String userName;
 }

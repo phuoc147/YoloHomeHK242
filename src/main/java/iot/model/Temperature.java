@@ -30,12 +30,13 @@ public class Temperature {
     @JoinColumn(name = "device_id", referencedColumnName = "deviceId")
     private Device device;
 
-    private String temperatureValue;
-    private String humidityValue;
+    Double value;
+    private String unit; // e.g. Celsius, Fahrenheit
     private String status;
 
     @CreationTimestamp
     private String createdDate;
     @CreationTimestamp
     private String updatedDate;
+
 }

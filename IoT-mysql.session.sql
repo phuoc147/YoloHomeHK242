@@ -1,2 +1,3 @@
 SELECT *
-from user;
+FROM device d
+WHERE d.home_id = 1;

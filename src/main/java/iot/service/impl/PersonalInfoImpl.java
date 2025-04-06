@@ -10,10 +10,10 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import iot.config.JwtUtils;
 import iot.dao.DeviceDao;
 import iot.dao.HomeDao;
 import iot.dao.UserDao;
-import iot.middleware.JwtUtils;
 
 @Service
 public class PersonalInfoImpl implements PersonalInfoService {
@@ -81,9 +81,9 @@ public class PersonalInfoImpl implements PersonalInfoService {
     @Override
     public String verifyAccount(String username, String password) {
         // Check if user exists
-        User user = userDao.findByUsername(username);
+        User user = userDao.findByUsernameAndPassword(username, password);
         if (user == null) {
-            logger.error("User not found");
+            logger.info("User not found");
             return null;
         } else {
             logger.info("Fetch user successfully with username:" + username);
