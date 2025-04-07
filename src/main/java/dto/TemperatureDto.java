@@ -1,11 +1,12 @@
 package dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
 
 @Builder
-@JsonIgnoreProperties(ignoreUnknown = true)
+@Getter
+@Setter
 public class TemperatureDto {
     private Double value;
     private String unit; // e.g. Celsius, Fahrenheit

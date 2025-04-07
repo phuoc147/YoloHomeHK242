@@ -1,4 +1,6 @@
-package iot.mqttSubscriber;
+package iot.mqtt;
+
+import java.time.LocalDate;
 
 import org.eclipse.paho.client.mqttv3.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,16 +54,18 @@ public class TemperatureSubscriber {
                 System.out.println("Device ID: " + deviceId);
                 System.out.println("Temperature: " + temperatureValue);
                 Temperature temperature = Temperature.builder()
-                        .device(Device.builder().deviceId(Long.parseLong(deviceId)).build())
                         .unit("Celsius")
                         .value(temperatureValue)
                         .build();
-                temperature.setCreatedDate(String.valueOf(System.currentTimeMillis()));
+                temperature.setCreatedDate(LocalDate.now().toString());
+                System.out.println("Created date: " + temperature.getCreatedDate());
                 // Store the temperature in db
-                sensorRecordingService.recordTemperature(temperature);
+                // sensorRecordingService.recordTemperature(temperature,
+                // Long.parseLong(deviceId));
 
-                // Store in Redis
-                redisTemplate.opsForValue().set(deviceId, jsonConverter.getObjectMapper()
+                // // Store in Redis
+                String key = "temperature:" + deviceId;
+                redisTemplate.opsForValue().set(key, jsonConverter.getObjectMapper()
                         .writeValueAsString(temperature));
 
             });

@@ -55,3 +55,11 @@ Content-Type: application/json
   "address":"Dong nai",
   "hometype":"apartment"
 }
+### TEMPERATURE
+GET http://localhost:8070/api/temperature/stream
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMSIsImlhdCI6MTc0Mzk1Mjg5NCwiZXhwIjoxNzQzOTUzMDAyfQ.07XqRfHwAc7TPWaj2jC6ZFVfkkE0sTGzV3T9Ik_uw68
+Content-Type: application/json
+
+{
+  "deviceId": "device123"
+}

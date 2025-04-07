@@ -24,10 +24,10 @@ class loginDTO {
 }
 
 @Builder
-class loginResponse {
+@Getter
+@Setter
+class LoginResponse {
     private String token;
-    private String message;
-    private String error;
 }
 
 @RestController
@@ -41,16 +41,17 @@ public class UserController {
     JwtUtils jwtUtils;
 
     @PostMapping("/login")
-    public ResponseEntity<loginResponse> login(@RequestBody loginDTO loginDTO) {
+    public ResponseEntity<ApiResponse<LoginResponse>> login(@RequestBody loginDTO loginDTO) {
         System.out.println(loginDTO.getUsername());
         String token = userService.verifyAccount(loginDTO.getUsername(), loginDTO.getPassword());
         if (token == null) {
             return ResponseEntity.status(401)
-                    .body(loginResponse.builder().message("Login failed").error("Invalid username or password")
-                            .build());
+                    .body(ApiResponse.<LoginResponse>builder()
+                            .error("Login failed, please check your username and password").build());
         } else {
             return ResponseEntity.ok()
-                    .body(loginResponse.builder().message("Login successfully").token(token).build());
+                    .body(ApiResponse.<LoginResponse>builder().message("Login successfully")
+                            .data(LoginResponse.builder().token(token).build()).build());
         }
     }
 
