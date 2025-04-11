@@ -4,6 +4,7 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import javax.crypto.KeyGenerator;
@@ -18,7 +19,8 @@ import java.util.Map;
 @Component
 public class JwtUtils {
 
-    private String secretkey = "";
+    @Value("${jwt.secret}")
+    private String secretkey;
 
     public JwtUtils() {
 
@@ -38,7 +40,7 @@ public class JwtUtils {
                 .add(claims)
                 .subject(username)
                 .issuedAt(new Date(System.currentTimeMillis()))
-                .expiration(new Date(System.currentTimeMillis() + 60 * 60 * 30))
+                .expiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60))
                 .and()
                 .signWith(getKey())
                 .compact();

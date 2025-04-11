@@ -54,8 +54,9 @@ public class EmployeeController {
         return "User added successfully";
     }
 
-    @PostMapping("/adddevice")
+    @PostMapping("/add_device")
     public String addDevice(@RequestBody AddDeviceRequestDto deviceDTO) {
+        System.out.println(deviceDTO.getDeviceName());
         Device device = Device.builder()
                 .deviceName(deviceDTO.getDeviceName())
                 .deviceNumber(deviceDTO.getDeviceNumber())

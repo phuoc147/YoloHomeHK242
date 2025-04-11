@@ -1,2 +1,2 @@
 SELECT *
-FROM device;
+FROM temperature;

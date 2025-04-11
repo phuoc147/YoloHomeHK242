@@ -45,13 +45,13 @@ public class SensorRecordingImpl implements SensorRecordingService {
     }
 
     @Override
-    public Temperature getCurrentTemperature(String deviceId) {
+    public Temperature getCurrentTemperature(Long deviceId) {
         try {
-            String cache = redisTemplate.opsForValue().get("temperature:" + deviceId);
+            String cache = redisTemplate.opsForValue().get("temperature:" + 1);
             Temperature temperature = null;
             if (cache == null) {
                 System.out.println("Cache is null, get temperature from db");
-                temperature = temperatureDao.getLatesTemperatureByDeviceId(Long.parseLong(deviceId));
+                temperature = temperatureDao.getLatesTemperatureByDeviceId(deviceId);
             } else {
                 temperature = jsonConverter.getObjectMapper().readValue(cache, Temperature.class);
             }

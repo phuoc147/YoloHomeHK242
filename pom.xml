@@ -134,6 +134,14 @@
 			<artifactId>spring-boot-starter-data-redis</artifactId>
 			<version>3.4.4</version>
 		</dependency>
+
+		<!-- JUNIT 5 -->
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-api</artifactId>
+			<version>5.12.1</version>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
 
 	<build>

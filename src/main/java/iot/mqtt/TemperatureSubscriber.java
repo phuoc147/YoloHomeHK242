@@ -42,29 +42,30 @@ public class TemperatureSubscriber {
     public void subscribe() throws MqttException {
         try {
             // Subscribe to the topic "temperature/device_id"
-            mqttClient.subscribe("temperature", 1, (topic, message) -> {
+            mqttClient.subscribe("khoahuynh/feeds/V1", 1, (topic, message) -> {
                 String payload = new String(message.getPayload());
                 System.out.println("Received message on topic: " + topic);
-                System.out.println("Payload: ");
+                System.out.println("Payload: " + payload);
 
-                SubscribedTemperatureData subscribedTemperatureData = jsonConverter.getObjectMapper()
-                        .readValue(payload, SubscribedTemperatureData.class);
-                String deviceId = subscribedTemperatureData.getDevice_id();
-                Double temperatureValue = subscribedTemperatureData.getTemperature();
-                System.out.println("Device ID: " + deviceId);
-                System.out.println("Temperature: " + temperatureValue);
+                // SubscribedTemperatureData subscribedTemperatureData =
+                // jsonConverter.getObjectMapper()
+                // .readValue(payload, SubscribedTemperatureData.class);
+                // String deviceId = subscribedTemperatureData.getDevice_id();
+                Double temperatureValue = Double.parseDouble(payload);
+
+                // System.out.println("Device ID: " + deviceId);
+                // System.out.println("Temperature: " + temperatureValue);
                 Temperature temperature = Temperature.builder()
                         .unit("Celsius")
                         .value(temperatureValue)
                         .build();
                 temperature.setCreatedDate(LocalDate.now().toString());
-                System.out.println("Created date: " + temperature.getCreatedDate());
-                // Store the temperature in db
-                // sensorRecordingService.recordTemperature(temperature,
-                // Long.parseLong(deviceId));
+                // System.out.println("Created date: " + temperature.getCreatedDate());
+                // // Store the temperature in db
+                // sensorRecordingService.recordTemperature(temperature, 1L);
 
-                // // Store in Redis
-                String key = "temperature:" + deviceId;
+                // // // Store in Redis
+                String key = "temperature:" + "1";
                 redisTemplate.opsForValue().set(key, jsonConverter.getObjectMapper()
                         .writeValueAsString(temperature));
 

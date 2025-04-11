@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import iot.mqtt.FanMqtt;
 import iot.mqtt.LightMqtt;
 import lombok.Getter;
 import lombok.Setter;
@@ -18,12 +19,23 @@ class LightRequestBody {
     private String action; // "on" or "off"
 }
 
+@Getter
+@Setter
+class FanRequestBody {
+    private String deviceId;
+    private String action; // "on" or "off"
+    private String level; // Speed level (1-3)
+}
+
 @RestController
 @RequestMapping("/device")
 public class Esp32Controller {
 
     @Autowired
     private LightMqtt lightMqtt;
+
+    @Autowired
+    private FanMqtt fanMqtt;
 
     @PostMapping("/light/activate")
     public ResponseEntity<ApiResponse<Object>> toggleLight(@RequestBody LightRequestBody requestBody) {
@@ -40,6 +52,21 @@ public class Esp32Controller {
         } catch (Exception e) {
             return ResponseEntity.status(500).body(ApiResponse.<Object>builder()
                     .message("Failed to send command to the device").build());
+        }
+    }
+
+    @PostMapping("/fan/activate")
+    public ResponseEntity<ApiResponse<Object>> fanController(@RequestBody FanRequestBody requestBody) {
+        System.out.println("Fan request body: " + requestBody.getLevel());
+        String action = requestBody.getAction();
+        if (action.equals("on")) {
+            fanMqtt.turnOn("khoahuynh/feeds/V6", requestBody.getLevel());
+            return ResponseEntity.ok()
+                    .body(ApiResponse.<Object>builder().message("Turn on successfully").build());
+        } else {
+            fanMqtt.turnOff("khoahuynh/feeds/V6");
+            return ResponseEntity.ok()
+                    .body(ApiResponse.<Object>builder().message("Turn off successfully").build());
         }
     }
 

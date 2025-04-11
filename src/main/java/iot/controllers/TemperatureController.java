@@ -15,7 +15,7 @@ import lombok.Getter;
 
 @Getter
 class CurrentTemperatureRequestBody {
-    private String deviceId;
+    private Long deviceId;
 }
 
 @RestController
@@ -30,7 +30,7 @@ public class TemperatureController {
     public ResponseEntity<ApiResponse<TemperatureDto>> getCurrentTemperature(
             @RequestBody CurrentTemperatureRequestBody request) {
         // Simulate a temperature reading
-        Temperature temperature = sensorRecordingService.getCurrentTemperature(request.getDeviceId());
+        Temperature temperature = sensorRecordingService.getCurrentTemperature(1L);
         if (temperature == null) {
             return ResponseEntity.status(404).body(ApiResponse.<TemperatureDto>builder()
                     .message("Temperature not found for device ID: " + request.getDeviceId()).build());
