@@ -1,4 +1,4 @@
-package dto;
+package iot.dto;
 
 import lombok.Builder;
 import lombok.Getter;

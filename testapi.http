@@ -4,6 +4,9 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwaHVvY2JrMjIiLCJpYXQiOjE3N
 ###
 GET  http://localhost:8070/api/user/test
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMSIsImlhdCI6MTc0NDMwNTQ3MywiZXhwIjoxNzQ0MzA5MDczfQ.OZqgorR6GmmUYUAwMn4oLfVGmvjdrwjvzQ7Ukh_W8hM
+###
+GET  http://localhost:8070/api/home/test
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMSIsImlhdCI6MTc0NDMwNTYxNywiZXhwIjoxNzQ0MzA5MjE3fQ.etYsXk3h9L5xmLBA8BpAOV1JKhlcHghakPNfAMNtrzQ
 
 ###
 POST  http://localhost:8070/api/voice-command
@@ -13,7 +16,10 @@ Content-Type: application/json
 {
   "command": "on the light"
 }
-###
+
+
+
+#################### TEST API FROM HERE ####################
 POST  http://localhost:8070/api/home/add
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwaHVvY2JrMjIiLCJpYXQiOjE3NDMxNTUxMzcsImV4cCI6MTc0MzE1NTI0NX0.SixazRp18WBVmFVkvHKHSnuqGwz9_wSLKi6U9ZCLKmA
 Content-Type: application/json
@@ -22,12 +28,9 @@ Content-Type: application/json
   "address":"HCM",
   "hometype":"apartment"
 }
-###
-GET  http://localhost:8070/api/home/test
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMSIsImlhdCI6MTc0NDMwNTYxNywiZXhwIjoxNzQ0MzA5MjE3fQ.etYsXk3h9L5xmLBA8BpAOV1JKhlcHghakPNfAMNtrzQ
 
 
-### Employee
+########## Employee
 POST  http://localhost:8070/api/employee/adduser
 Content-Type: application/json
 
@@ -36,7 +39,7 @@ Content-Type: application/json
   "password": "user1",
   "homeId": "1"
 }
-### ADD USER
+########## ADD USER
 POST  http://localhost:8070/api/employee/addhome
 Content-Type: application/json
 
@@ -44,14 +47,31 @@ Content-Type: application/json
   "address":"Dong nai",
   "hometype":"apartment"
 }
-### TEMPERATURE
-GET http://localhost:8070/api/temperature/stream
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMSIsImlhdCI6MTc0NDMwNTYxNywiZXhwIjoxNzQ0MzA5MjE3fQ.etYsXk3h9L5xmLBA8BpAOV1JKhlcHghakPNfAMNtrzQ
+########## SENSOR DATA
+GET http://localhost:8070/api/sensor/temperature/stream
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMSIsImlhdCI6MTc0NDQ3OTYwOCwiZXhwIjoxNzQ0NDgzMjA4fQ.ULmjvpEIzjyFAcn1f2DoXCh_1kNOVyNvtM1SYGRHiTc
 Content-Type: application/json
 
 {
-  "deviceId": "device1"
+  "deviceId": 12
 }
+###
+GET http://localhost:8070/api/sensor/light/stream
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMSIsImlhdCI6MTc0NDQ3OTYwOCwiZXhwIjoxNzQ0NDgzMjA4fQ.ULmjvpEIzjyFAcn1f2DoXCh_1kNOVyNvtM1SYGRHiTc
+Content-Type: application/json
+
+{
+  "deviceId": 12
+}
+###
+GET http://localhost:8070/api/sensor/humidity/stream
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMSIsImlhdCI6MTc0NDQ3OTYwOCwiZXhwIjoxNzQ0NDgzMjA4fQ.ULmjvpEIzjyFAcn1f2DoXCh_1kNOVyNvtM1SYGRHiTc
+Content-Type: application/json
+
+{
+  "deviceId": 12
+}
+
 ########## FACE IDENTIFY
 GET http://localhost:8070/api/face/
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMSIsImlhdCI6MTc0NDE1ODc0MSwiZXhwIjoxNzQ0MTU4ODQ5fQ.ij4TZPX1Yhjbz-UVyhuH9Tnaf8Ch5sWM8AlBN0fkua0
@@ -69,7 +89,7 @@ Content-Type: application/json
   "action": "off",
   "level": "1"
 }
-### USER LOGIN
+########## USER LOGIN
 POST  http://localhost:8070/api/face/server/send_embedding
 Content-Type: application/json
 

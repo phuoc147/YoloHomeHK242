@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import dto.DeviceDto.AddDeviceRequestDto;
+import iot.dto.DeviceDto.AddDeviceRequestDto;
 import iot.model.Device;
 import iot.model.Home;
 import iot.model.User;
