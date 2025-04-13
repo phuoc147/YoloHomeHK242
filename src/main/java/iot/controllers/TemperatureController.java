@@ -6,12 +6,15 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import dto.TemperatureDto;
 import iot.model.Temperature;
 import iot.service.SensorRecordingService;
 import lombok.Getter;
+
+import java.util.List;
 
 @Getter
 class CurrentTemperatureRequestBody {
@@ -46,4 +49,25 @@ public class TemperatureController {
                 .data(temperatureDto)
                 .build());
     }
+
+    @GetMapping("/by-date")
+    public ResponseEntity<ApiResponse<List<TemperatureDto>>> getAllTemperaturesByDate(
+            @RequestParam(name = "date") String date) {
+    
+        List<Temperature> list = sensorRecordingService.getTemperaturesByDate(date);
+    
+        List<TemperatureDto> dtoList = list.stream().map(temp -> TemperatureDto.builder()
+                .value(temp.getValue())
+                .unit(temp.getUnit())
+                .status(temp.getStatus())
+                .date(temp.getCreatedDate()) // or getUpdatedDate
+                .build()).toList();
+    
+        return ResponseEntity.ok(ApiResponse.<List<TemperatureDto>>builder()
+                .message("List of temperatures for: " + date)
+                .data(dtoList)
+                .build());
+    }
+    
+
 }

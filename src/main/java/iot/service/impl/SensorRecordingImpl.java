@@ -12,7 +12,7 @@ import iot.dao.TemperatureDao;
 import iot.model.Device;
 import iot.model.Temperature;
 import iot.service.SensorRecordingService;
-
+import java.util.List;
 @Service
 public class SensorRecordingImpl implements SensorRecordingService {
 
@@ -60,5 +60,10 @@ public class SensorRecordingImpl implements SensorRecordingService {
             return null;
         }
     }
+    public List<Temperature> getTemperaturesByDate(String date) {
+        return temperatureDao.findByCreatedDateOrderByTime(date);
+    }
+    
+    
 
 }
