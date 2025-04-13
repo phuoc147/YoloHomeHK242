@@ -46,8 +46,6 @@ public class TemperatureMqtt {
             // Subscribe to the topic "temperature/device_id"
             mqttClient.subscribe("khoahuynh/feeds/V1", 1, (topic, message) -> {
                 String payload = new String(message.getPayload());
-                System.out.println("Received message on topic: " + topic);
-                System.out.println("Payload: " + payload);
 
                 // SubscribedTemperatureData subscribedTemperatureData =
                 // jsonConverter.getObjectMapper()

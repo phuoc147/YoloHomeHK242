@@ -33,7 +33,7 @@ build/
 .vscode/
 
 ### Application Properties ###
-src/resources/application.properties
+src/main/resources/application.properties
 
 ### redis
 redis-data/
