@@ -1,32 +1,22 @@
 package iot.mqtt;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import org.eclipse.paho.client.mqttv3.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Component;
 
 import iot.config.JsonConverter;
-import iot.model.Device;
+import iot.model.Humidity;
 import iot.model.Temperature;
 import iot.service.SensorRecordingService;
 import jakarta.annotation.PostConstruct;
-import lombok.Getter;
-
-//Class for subcribed data
-@Getter
-class SubscribedTemperatureData {
-    private String device_id;
-    private Double temperature;
-    // Getters and setters
-}
 
 @Component
-@ConditionalOnProperty(name = "mqtt.enabled", havingValue = "true")
-public class TemperatureSubscriber {
+public class HumidityMqtt {
 
     @Autowired
     private MqttClient mqttClient;
@@ -44,32 +34,30 @@ public class TemperatureSubscriber {
     public void subscribe() throws MqttException {
         try {
             // Subscribe to the topic "temperature/device_id"
-            mqttClient.subscribe("khoahuynh/feeds/V1", 1, (topic, message) -> {
+            mqttClient.subscribe("khoahuynh/feeds/V2", 1, (topic, message) -> {
                 String payload = new String(message.getPayload());
-                System.out.println("Received message on topic: " + topic);
-                System.out.println("Payload: " + payload);
 
                 // SubscribedTemperatureData subscribedTemperatureData =
                 // jsonConverter.getObjectMapper()
                 // .readValue(payload, SubscribedTemperatureData.class);
                 // String deviceId = subscribedTemperatureData.getDevice_id();
-                Double temperatureValue = Double.parseDouble(payload);
+                Double humidityValue = Double.parseDouble(payload);
 
                 // System.out.println("Device ID: " + deviceId);
                 // System.out.println("Temperature: " + temperatureValue);
-                Temperature temperature = Temperature.builder()
-                        .unit("Celsius")
-                        .value(temperatureValue)
+                Humidity humidity = Humidity.builder()
+                        .unit("%")
+                        .value(humidityValue)
                         .build();
-                temperature.setCreatedDate(LocalDate.now().toString());
+                humidity.setCreatedDate(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
                 // System.out.println("Created date: " + temperature.getCreatedDate());
                 // // Store the temperature in db
                 // sensorRecordingService.recordTemperature(temperature, 1L);
 
                 // // // Store in Redis
-                String key = "temperature:" + "1";
+                String key = "humidity:" + "1";
                 redisTemplate.opsForValue().set(key, jsonConverter.getObjectMapper()
-                        .writeValueAsString(temperature));
+                        .writeValueAsString(humidity));
 
             });
         } catch (Exception e) {

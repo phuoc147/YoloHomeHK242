@@ -1,75 +1,81 @@
 package iot.mqtt;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.eclipse.paho.client.mqttv3.MqttClient;
-import org.eclipse.paho.client.mqttv3.MqttException;
-import org.eclipse.paho.client.mqttv3.MqttMessage;
+import org.eclipse.paho.client.mqttv3.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Component;
 
 import iot.config.JsonConverter;
-import iot.model.Light;
+import iot.model.Device;
+import iot.model.Temperature;
+import iot.service.SensorRecordingService;
 import jakarta.annotation.PostConstruct;
+import lombok.Getter;
+
+//Class for subcribed data
+@Getter
+class SubscribedTemperatureData {
+    private String device_id;
+    private Double temperature;
+    // Getters and setters
+}
 
 @Component
 @ConditionalOnProperty(name = "mqtt.enabled", havingValue = "true")
-public class LightMqtt {
-
-    private final Logger logger = LogManager.getLogger(LightMqtt.class);
-
-    @Autowired
-    private RedisTemplate<String, String> redisTemplate;
+// public class TemperatureSubscriber {
+public class TemperatureMqtt {
 
     @Autowired
     private MqttClient mqttClient;
 
     @Autowired
-    private JsonConverter jsonConverter;
+    private RedisTemplate<String, String> redisTemplate;
 
     @Autowired
-    private String[] colors = { "red", "green", "blue", "yellow", "purple", "cyan" };
+    private SensorRecordingService sensorRecordingService;
+
+    @Autowired
+    private JsonConverter jsonConverter;
 
     @PostConstruct
     public void subscribe() throws MqttException {
         try {
             // Subscribe to the topic "temperature/device_id"
-            mqttClient.subscribe("khoahuynh/feeds/V3", 1, (topic, message) -> {
+            mqttClient.subscribe("khoahuynh/feeds/V1", 1, (topic, message) -> {
                 String payload = new String(message.getPayload());
 
                 // SubscribedTemperatureData subscribedTemperatureData =
                 // jsonConverter.getObjectMapper()
                 // .readValue(payload, SubscribedTemperatureData.class);
                 // String deviceId = subscribedTemperatureData.getDevice_id();
-                Double lightValue = Double.parseDouble(payload);
+                Double temperatureValue = Double.parseDouble(payload);
 
-                Light light = Light.builder()
-                        .unit("%")
-                        .value(lightValue)
+                // System.out.println("Device ID: " + deviceId);
+                // System.out.println("Temperature: " + temperatureValue);
+                Temperature temperature = Temperature.builder()
+                        .unit("Celsius")
+                        .value(temperatureValue)
                         .build();
-                light.setCreatedDate(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
+                temperature
+                        .setCreatedDate(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
+                // System.out.println("Created date: " + temperature.getCreatedDate());
                 // // Store the temperature in db
                 // sensorRecordingService.recordTemperature(temperature, 1L);
 
                 // // // Store in Redis
-                String key = "light:" + "1";
+                String key = "temperature:" + "1";
                 redisTemplate.opsForValue().set(key, jsonConverter.getObjectMapper()
-                        .writeValueAsString(light));
+                        .writeValueAsString(temperature));
 
             });
         } catch (Exception e) {
             System.out.println("Error subscribing to topic: " + e.getMessage());
         }
     }
-
-    public void publishCommand(String topic, String message) throws MqttException {
-        MqttMessage mqttMessage = new MqttMessage(message.getBytes());
-        mqttClient.publish(topic, mqttMessage);
-    }
-
 }

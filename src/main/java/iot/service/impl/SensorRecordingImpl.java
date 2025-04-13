@@ -8,8 +8,12 @@ import org.springframework.stereotype.Service;
 
 import iot.config.JsonConverter;
 import iot.dao.DeviceDao;
+import iot.dao.HumidityDao;
+import iot.dao.LightDao;
 import iot.dao.TemperatureDao;
 import iot.model.Device;
+import iot.model.Humidity;
+import iot.model.Light;
 import iot.model.Temperature;
 import iot.service.SensorRecordingService;
 import java.util.List;
@@ -17,7 +21,13 @@ import java.util.List;
 public class SensorRecordingImpl implements SensorRecordingService {
 
     @Autowired
-    TemperatureDao temperatureDao;
+    private TemperatureDao temperatureDao;
+
+    @Autowired
+    private LightDao lightDao;
+
+    @Autowired
+    private HumidityDao humidityDao;
 
     @Autowired
     private JsonConverter jsonConverter;
@@ -30,6 +40,7 @@ public class SensorRecordingImpl implements SensorRecordingService {
 
     private final Logger logger = LogManager.getLogger(SensorRecordingImpl.class);
 
+    // ########## Temperature ##########
     @Override
     public void recordTemperature(Temperature temperature, Long deviceId) throws Exception {
         try {
@@ -65,5 +76,70 @@ public class SensorRecordingImpl implements SensorRecordingService {
     }
     
     
+
+    // ########## Light ##########
+    @Override
+    public void recordLight(Light light, Long deviceId) throws Exception {
+        try {
+            // Check valid deviceId
+            System.out.println("Device ID: " + deviceId);
+            Device device = deviceDao.findById(deviceId).orElseThrow(() -> new Exception("Device not found"));
+            light.setDevice(device);
+            lightDao.save(light);
+            logger.info("Record light sensor successfully with deviceId:" + deviceId);
+        } catch (Exception e) {
+            logger.error("Error recording light sensor: " + e.getMessage());
+        }
+
+    }
+
+    @Override
+    public Light getCurrentLight(Long deviceId) {
+        try {
+            String cache = redisTemplate.opsForValue().get("light:" + 1);
+            Light light = null;
+            if (cache == null) {
+                System.out.println("Cache is null, get temperature from db");
+                light = lightDao.getLatesTemperatureByDeviceId(deviceId);
+            } else {
+                light = jsonConverter.getObjectMapper().readValue(cache, Light.class);
+            }
+            return light;
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    // ########## Humidity ##########
+    @Override
+    public void recordHumidity(Humidity humidity, Long deviceId) throws Exception {
+        try {
+            // Check valid deviceId
+            System.out.println("Device ID: " + deviceId);
+            Device device = deviceDao.findById(deviceId).orElseThrow(() -> new Exception("Device not found"));
+            humidity.setDevice(device);
+            humidityDao.save(humidity);
+            logger.info("Record humidity successfully with deviceId:" + deviceId);
+        } catch (Exception e) {
+            logger.error("Error recording humidity : " + e.getMessage());
+        }
+    }
+
+    @Override
+    public Humidity getCurrentHumidity(Long deviceId) {
+        try {
+            String cache = redisTemplate.opsForValue().get("humidity:" + 1);
+            Humidity humidity = null;
+            if (cache == null) {
+                System.out.println("Cache is null, get temperature from db");
+                humidity = humidityDao.getLatesTemperatureByDeviceId(deviceId);
+            } else {
+                humidity = jsonConverter.getObjectMapper().readValue(cache, Humidity.class);
+            }
+            return humidity;
+        } catch (Exception e) {
+            return null;
+        }
+    }
 
 }

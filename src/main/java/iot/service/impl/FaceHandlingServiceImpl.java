@@ -14,7 +14,7 @@ import iot.dao.UserDao;
 import iot.model.FaceEmbedding;
 import iot.model.User;
 import iot.service.FaceHandlingService;
-import utils.JsonUtils;
+import iot.utils.JsonUtils;
 
 @Service
 public class FaceHandlingServiceImpl implements FaceHandlingService {
