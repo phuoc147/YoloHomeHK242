@@ -14,8 +14,8 @@ import iot.mqtt.DeviceControlMqtt;
 import iot.mqtt.LightMqtt;
 import jakarta.validation.Valid;
 
-// @Component
-// @ConditionalOnProperty(name = "mqtt.enabled", havingValue = "true")
+@Component
+@ConditionalOnProperty(name = "mqtt.enabled", havingValue = "true")
 @RestController
 @RequestMapping("/devicecontrol")
 public class Esp32Controller {

@@ -2,7 +2,7 @@ package iot.service;
 
 import java.util.List;
 
-import dto.TemperatureDto;
+
 import iot.dto.SensorDataDto;
 import iot.model.Humidity;
 import iot.model.Light;
