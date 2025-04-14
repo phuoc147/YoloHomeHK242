@@ -6,12 +6,11 @@ import org.eclipse.paho.client.mqttv3.MqttClient;
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Component;
 
 @Component
 public class FanMqtt {
-    @Autowired
+    @Autowired(required = false)
     private MqttClient mqttClient;
 
     private final Logger logger = LogManager.getLogger(FanMqtt.class);
