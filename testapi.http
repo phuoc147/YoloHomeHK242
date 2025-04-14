@@ -143,3 +143,14 @@ Content-Type: application/json
   "deviceNumber": "123456",
   "homeId": "1"
 }
+
+### LIST TEMPERATURE
+GET http://localhost:8070/api/temperature/by-date?date=2025-04-13
+Content-Type: application/json
+
+{
+  "message":"List of temperatures for: 2025-04-13",
+  "data":[{"value":26.3,"unit":"Celsius","status":"normal","date":"2025-04-13 01:00:00"}],
+  "error":null
+}
+  

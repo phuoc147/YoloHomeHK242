@@ -9,6 +9,7 @@ import org.eclipse.paho.client.mqttv3.MqttClient;
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 
@@ -17,6 +18,7 @@ import iot.model.Light;
 import jakarta.annotation.PostConstruct;
 
 @Component
+@ConditionalOnProperty(name = "mqtt.enabled", havingValue = "true")
 public class LightMqtt {
 
     private final Logger logger = LogManager.getLogger(LightMqtt.class);
