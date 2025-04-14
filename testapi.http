@@ -81,32 +81,32 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMSIsImlhdCI6MTc0NDMwN
 
 ########## CONTROLLING DEVICE
 POST http://localhost:8070/devicecontrol/fan/activate
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMSIsImlhdCI6MTc0NDQ4MzM1OSwiZXhwIjoxNzQ0NDg2OTU5fQ.if0yQEF2JSxOdxdkuCcID9rhHAa_M0o1wSpX1rOc4_Y
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMSIsImlhdCI6MTc0NDU5ODk5NywiZXhwIjoxNzQ0NjAyNTk3fQ.bSulgILU53njyaOsm3Jv9X_hVtA2z3tLT86_ZaNYBz8
 Content-Type: application/json
 
 {
   "deviceId": "user1",
   "action": "off",
-  "level": "1"
+  "level": "3"
 }
 ###
 POST http://localhost:8070/devicecontrol/light/activate
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMSIsImlhdCI6MTc0NDQ4MzM1OSwiZXhwIjoxNzQ0NDg2OTU5fQ.if0yQEF2JSxOdxdkuCcID9rhHAa_M0o1wSpX1rOc4_Y
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMSIsImlhdCI6MTc0NDU5ODk5NywiZXhwIjoxNzQ0NjAyNTk3fQ.bSulgILU53njyaOsm3Jv9X_hVtA2z3tLT86_ZaNYBz8
 Content-Type: application/json
 
 {
   "deviceId": "user1",
   "action": "on",
-  "color": "red"
+  "color": "green"
 }
 ###
 POST http://localhost:8070/devicecontrol/door/activate
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMSIsImlhdCI6MTc0NDQ4MzM1OSwiZXhwIjoxNzQ0NDg2OTU5fQ.if0yQEF2JSxOdxdkuCcID9rhHAa_M0o1wSpX1rOc4_Y
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMSIsImlhdCI6MTc0NDU5ODk5NywiZXhwIjoxNzQ0NjAyNTk3fQ.bSulgILU53njyaOsm3Jv9X_hVtA2z3tLT86_ZaNYBz8
 Content-Type: application/json
 
 {
   "deviceId": "user1",
-  "action": "on"
+  "action": "close"
 }
 
 ########## USER LOGIN

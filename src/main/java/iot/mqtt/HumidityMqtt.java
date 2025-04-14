@@ -18,7 +18,7 @@ import jakarta.annotation.PostConstruct;
 @Component
 public class HumidityMqtt {
 
-    @Autowired
+    @Autowired(required = false)
     private MqttClient mqttClient;
 
     @Autowired

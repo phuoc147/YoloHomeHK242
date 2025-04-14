@@ -16,10 +16,10 @@ import jakarta.validation.Valid;
 @RequestMapping("/devicecontrol")
 public class Esp32Controller {
 
-    @Autowired
+    @Autowired(required = false)
     private LightMqtt lightMqtt;
 
-    @Autowired
+    @Autowired(required = false)
     private DeviceControlMqtt deviceControlMqtt;
 
     @PostMapping("/light/activate")
@@ -36,7 +36,7 @@ public class Esp32Controller {
             }
 
         } else {
-            if (deviceControlMqtt.control("khoahuynh/feeds/V3", "")) {
+            if (deviceControlMqtt.control("khoahuynh/feeds/V4", "light off")) {
                 return ResponseEntity.ok()
                         .body(ApiResponse.<Object>builder().message("Turn on successfully").build());
             } else {
@@ -51,7 +51,7 @@ public class Esp32Controller {
             @Valid @RequestBody DeviceDto.FanControlRequestDto requestBody) {
         String action = requestBody.getAction();
         if (action.equals("on")) {
-            if (deviceControlMqtt.control("khoahuynh/feeds/V6", requestBody.getLevel())) {
+            if (deviceControlMqtt.control("khoahuynh/feeds/V7", requestBody.getLevel())) {
                 return ResponseEntity.ok()
                         .body(ApiResponse.<Object>builder().message("Turn on successfully").build());
             } else {
@@ -60,7 +60,7 @@ public class Esp32Controller {
             }
 
         } else {
-            if (deviceControlMqtt.control("khoahuynh/feeds/V5", "")) {
+            if (deviceControlMqtt.control("khoahuynh/feeds/V5", "fan off")) {
                 return ResponseEntity.ok()
                         .body(ApiResponse.<Object>builder().message("Turn on successfully").build());
             } else {
@@ -74,8 +74,8 @@ public class Esp32Controller {
     public ResponseEntity<ApiResponse<Object>> doorController(
             @Valid @RequestBody DeviceDto.DoorControlRequestDto requestBody) {
         String action = requestBody.getAction();
-        if (action.equals("on")) {
-            if (deviceControlMqtt.control("khoahuynh/feeds/V6", "")) {
+        if (action.equals("open")) {
+            if (deviceControlMqtt.control("khoahuynh/feeds/V6", "open")) {
                 return ResponseEntity.ok()
                         .body(ApiResponse.<Object>builder().message("Turn on successfully").build());
             } else {
@@ -84,7 +84,7 @@ public class Esp32Controller {
             }
 
         } else {
-            if (deviceControlMqtt.control("khoahuynh/feeds/V5", "")) {
+            if (deviceControlMqtt.control("khoahuynh/feeds/V6", "close")) {
                 return ResponseEntity.ok()
                         .body(ApiResponse.<Object>builder().message("Turn on successfully").build());
             } else {

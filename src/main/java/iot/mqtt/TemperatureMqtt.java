@@ -28,7 +28,7 @@ class SubscribedTemperatureData {
 @Component
 public class TemperatureMqtt {
 
-    @Autowired
+    @Autowired(required = false)
     private MqttClient mqttClient;
 
     @Autowired

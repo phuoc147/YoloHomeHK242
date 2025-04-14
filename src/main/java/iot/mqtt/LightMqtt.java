@@ -24,14 +24,13 @@ public class LightMqtt {
     @Autowired
     private RedisTemplate<String, String> redisTemplate;
 
-    @Autowired
+    @Autowired(required = false)
     private MqttClient mqttClient;
 
     @Autowired
     private JsonConverter jsonConverter;
 
-    @Autowired
-    private String[] colors = { "red", "green", "blue", "yellow", "purple", "cyan" };
+    private final String[] colors = { "red", "green", "blue", "yellow", "purple", "cyan" };
 
     @PostConstruct
     public void subscribe() throws MqttException {
