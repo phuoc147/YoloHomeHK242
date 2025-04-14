@@ -109,7 +109,9 @@ public class SensorRecordingImpl implements SensorRecordingService {
             return null;
         }
     }
-
+    public List<Light> getLightByDate(String date) {
+        return lightDao.findByCreatedDateOrderByTime(date);
+    }
     // ########## Humidity ##########
     @Override
     public void recordHumidity(Humidity humidity, Long deviceId) throws Exception {
@@ -141,5 +143,7 @@ public class SensorRecordingImpl implements SensorRecordingService {
             return null;
         }
     }
-
+    public List<Humidity> getHumidityByDate(String date) {
+        return humidityDao.findByCreatedDateOrderByTime(date);
+    }
 }

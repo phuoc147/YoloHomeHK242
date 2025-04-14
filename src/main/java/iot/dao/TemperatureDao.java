@@ -14,7 +14,7 @@ public interface TemperatureDao extends JpaRepository<Temperature, Long> {
     Temperature getLatesTemperatureByDeviceId(Long deviceId); // Assuming deviceId is a field in the
      
     // Get 24 degrees
-    @Query(value = "SELECT * FROM temperature t WHERE t.created_date LIKE CONCAT(?1, '%') ORDER BY t.created_date ASC", nativeQuery = true)
+    @Query(value = "SELECT * FROM temperature t WHERE t.created_date LIKE CONCAT(?1, '%') AND DATE_FORMAT(t.created_date, '%i:%s') = '00:00' ORDER BY t.created_date ASC", nativeQuery = true)
     List<Temperature> findByCreatedDateOrderByTime(String createdDate);
     
     

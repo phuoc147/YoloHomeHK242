@@ -52,24 +52,24 @@ public class TemperatureController {
                 .build());
     }
 
-    @GetMapping("/by-date")
-    public ResponseEntity<ApiResponse<List<CurrentTemperatureResponseDto>>> getAllTemperaturesByDate(
-            @RequestParam(name = "date") String date) {
+//     @GetMapping("/by-date")
+//     public ResponseEntity<ApiResponse<List<CurrentTemperatureResponseDto>>> getAllTemperaturesByDate(
+//             @RequestParam(name = "date") String date) {
     
-        List<Temperature> list = sensorRecordingService.getTemperaturesByDate(date);
+//         List<Temperature> list = sensorRecordingService.getTemperaturesByDate(date);
     
-        List<CurrentTemperatureResponseDto> dtoList = list.stream().map(temp -> CurrentTemperatureResponseDto.builder()
-                .value(temp.getValue())
-                .unit(temp.getUnit())
-                .status(temp.getStatus())
-                .date(temp.getCreatedDate()) // or getUpdatedDate
-                .build()).toList();
+//         List<CurrentTemperatureResponseDto> dtoList = list.stream().map(temp -> CurrentTemperatureResponseDto.builder()
+//                 .value(temp.getValue())
+//                 .unit(temp.getUnit())
+//                 .status(temp.getStatus())
+//                 .date(temp.getCreatedDate()) // or getUpdatedDate
+//                 .build()).toList();
     
-        return ResponseEntity.ok(ApiResponse.<List<CurrentTemperatureResponseDto>>builder()
-                .message("List of temperatures for: " + date)
-                .data(dtoList)
-                .build());
-    }
+//         return ResponseEntity.ok(ApiResponse.<List<CurrentTemperatureResponseDto>>builder()
+//                 .message("List of temperatures for: " + date)
+//                 .data(dtoList)
+//                 .build());
+//     }
     
 
 }
