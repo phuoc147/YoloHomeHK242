@@ -1,10 +1,12 @@
 package iot.mqtt;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-import org.eclipse.paho.client.mqttv3.*;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.eclipse.paho.client.mqttv3.MqttClient;
+import org.eclipse.paho.client.mqttv3.MqttException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -12,12 +14,10 @@ import org.springframework.stereotype.Component;
 
 import iot.config.JsonConverter;
 import iot.model.Humidity;
-import iot.model.Temperature;
 import iot.service.SensorRecordingService;
 import jakarta.annotation.PostConstruct;
 
 @Component
-@ConditionalOnProperty(name = "mqtt.enabled", havingValue = "true")
 public class HumidityMqtt {
 
     @Autowired(required = false)
@@ -54,7 +54,7 @@ public class HumidityMqtt {
                 humidity.setCreatedDate(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
                 // System.out.println("Created date: " + temperature.getCreatedDate());
                 // // Store the temperature in db
-                // sensorRecordingService.recordTemperature(temperature, 1L);
+                sensorRecordingService.recordHumidity(humidity, 1L);
 
                 // // // Store in Redis
                 String key = "humidity:" + "1";

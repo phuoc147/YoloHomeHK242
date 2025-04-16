@@ -17,6 +17,7 @@ import iot.model.Light;
 import iot.model.Temperature;
 import iot.service.SensorRecordingService;
 import java.util.List;
+
 @Service
 public class SensorRecordingImpl implements SensorRecordingService {
 
@@ -45,7 +46,6 @@ public class SensorRecordingImpl implements SensorRecordingService {
     public void recordTemperature(Temperature temperature, Long deviceId) throws Exception {
         try {
             // Check valid deviceId
-            System.out.println("Device ID: " + deviceId);
             Device device = deviceDao.findById(deviceId).orElseThrow(() -> new Exception("Device not found"));
             temperature.setDevice(device);
             temperatureDao.save(temperature);
@@ -71,18 +71,16 @@ public class SensorRecordingImpl implements SensorRecordingService {
             return null;
         }
     }
+
     public List<Temperature> getTemperaturesByDate(String date) {
         return temperatureDao.findByCreatedDateOrderByTime(date);
     }
-    
-    
 
     // ########## Light ##########
     @Override
     public void recordLight(Light light, Long deviceId) throws Exception {
         try {
             // Check valid deviceId
-            System.out.println("Device ID: " + deviceId);
             Device device = deviceDao.findById(deviceId).orElseThrow(() -> new Exception("Device not found"));
             light.setDevice(device);
             lightDao.save(light);
@@ -100,7 +98,7 @@ public class SensorRecordingImpl implements SensorRecordingService {
             Light light = null;
             if (cache == null) {
                 System.out.println("Cache is null, get temperature from db");
-                light = lightDao.getLatesTemperatureByDeviceId(deviceId);
+                light = lightDao.getLatestLightByDeviceId(deviceId);
             } else {
                 light = jsonConverter.getObjectMapper().readValue(cache, Light.class);
             }
@@ -115,7 +113,6 @@ public class SensorRecordingImpl implements SensorRecordingService {
     public void recordHumidity(Humidity humidity, Long deviceId) throws Exception {
         try {
             // Check valid deviceId
-            System.out.println("Device ID: " + deviceId);
             Device device = deviceDao.findById(deviceId).orElseThrow(() -> new Exception("Device not found"));
             humidity.setDevice(device);
             humidityDao.save(humidity);
@@ -132,12 +129,13 @@ public class SensorRecordingImpl implements SensorRecordingService {
             Humidity humidity = null;
             if (cache == null) {
                 System.out.println("Cache is null, get temperature from db");
-                humidity = humidityDao.getLatesTemperatureByDeviceId(deviceId);
+                humidity = humidityDao.getLatestHumidityByDeviceId(deviceId);
             } else {
                 humidity = jsonConverter.getObjectMapper().readValue(cache, Humidity.class);
             }
             return humidity;
         } catch (Exception e) {
+            System.out.println("Error get humidity from cache: " + e.getMessage());
             return null;
         }
     }

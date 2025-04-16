@@ -26,7 +26,7 @@ public class Humidity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long humidityId;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "device_id", referencedColumnName = "deviceId")
     private Device device;
 

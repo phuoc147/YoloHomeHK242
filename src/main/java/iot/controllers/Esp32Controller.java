@@ -11,11 +11,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import iot.dto.DeviceDto;
 import iot.mqtt.DeviceControlMqtt;
-import iot.mqtt.LightMqtt;
 import jakarta.validation.Valid;
 
 @Component
-@ConditionalOnProperty(name = "mqtt.enabled", havingValue = "true")
 @RestController
 @RequestMapping("/devicecontrol")
 public class Esp32Controller {

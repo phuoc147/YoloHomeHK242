@@ -26,7 +26,7 @@ public class Temperature {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long temperatureId;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "device_id", referencedColumnName = "deviceId")
     private Device device;
 

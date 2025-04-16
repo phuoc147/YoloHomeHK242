@@ -10,7 +10,7 @@ import iot.model.Light;
 public interface LightDao extends JpaRepository<Light, Long> {
     // Get latest temperature by deviceId
     @Query(value = "SELECT * FROM light WHERE device_id = ?1 ORDER BY created_date DESC LIMIT 1", nativeQuery = true)
-    Light getLatesTemperatureByDeviceId(Long deviceId); // Assuming deviceId is a field in the
-                                                        // Device entity
+    Light getLatestLightByDeviceId(Long deviceId); // Assuming deviceId is a field in the
+                                                   // Device entity
 
 }

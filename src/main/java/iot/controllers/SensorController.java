@@ -1,7 +1,6 @@
 package iot.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -10,10 +9,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import iot.dto.SensorDataDto;
 import iot.model.Humidity;
+import iot.model.Light;
 import iot.model.Temperature;
 import iot.service.SensorRecordingService;
 import jakarta.validation.Valid;
-import lombok.Getter;
 
 @RestController
 @RequestMapping("/api/sensor")
@@ -81,8 +80,8 @@ public class SensorController {
 	public ResponseEntity<ApiResponse<SensorDataDto.CurrentLightResponseDto>> getCurrentHumidity(
 			@Valid @RequestBody SensorDataDto.CurrentLightRequestDto request) {
 		// Simulate a humidity reading
-		Humidity humidity = sensorRecordingService.getCurrentHumidity(1L);
-		if (humidity == null) {
+		Light light = sensorRecordingService.getCurrentLight(1L);
+		if (light == null) {
 			return ResponseEntity
 					.status(404).body(
 							ApiResponse.<SensorDataDto.CurrentLightResponseDto>builder()
@@ -90,16 +89,16 @@ public class SensorController {
 											+ request.getDeviceId())
 									.build());
 		}
-		SensorDataDto.CurrentLightResponseDto humidityDto = SensorDataDto.CurrentLightResponseDto
+		SensorDataDto.CurrentLightResponseDto lightDto = SensorDataDto.CurrentLightResponseDto
 				.builder()
-				.value(humidity.getValue())
-				.unit(humidity.getUnit())
-				.status(humidity.getStatus())
-				.date(humidity.getCreatedDate())
+				.value(light.getValue())
+				.unit(light.getUnit())
+				.status(light.getStatus())
+				.date(light.getCreatedDate())
 				.build();
 		return ResponseEntity.ok(ApiResponse.<SensorDataDto.CurrentLightResponseDto>builder()
 				.message("Light humidity retrieved successfully")
-				.data(humidityDto)
+				.data(lightDto)
 				.build());
 	}
 

@@ -3,25 +3,20 @@ package iot.mqtt;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.eclipse.paho.client.mqttv3.MqttClient;
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 
 import iot.config.JsonConverter;
 import iot.model.Light;
+import iot.service.SensorRecordingService;
 import jakarta.annotation.PostConstruct;
 
 @Component
-@ConditionalOnProperty(name = "mqtt.enabled", havingValue = "true")
 public class LightMqtt {
-
-    private final Logger logger = LogManager.getLogger(LightMqtt.class);
 
     @Autowired
     private RedisTemplate<String, String> redisTemplate;
@@ -31,6 +26,9 @@ public class LightMqtt {
 
     @Autowired
     private JsonConverter jsonConverter;
+
+    @Autowired
+    private SensorRecordingService sensorRecordingService;
 
     private final String[] colors = { "red", "green", "blue", "yellow", "purple", "cyan" };
 
@@ -53,7 +51,7 @@ public class LightMqtt {
                         .build();
                 light.setCreatedDate(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
                 // // Store the temperature in db
-                // sensorRecordingService.recordTemperature(temperature, 1L);
+                sensorRecordingService.recordLight(light, 1L);
 
                 // // // Store in Redis
                 String key = "light:" + "1";

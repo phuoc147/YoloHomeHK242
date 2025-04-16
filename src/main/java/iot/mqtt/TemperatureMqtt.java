@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.eclipse.paho.client.mqttv3.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -27,7 +29,6 @@ class SubscribedTemperatureData {
 }
 
 @Component
-@ConditionalOnProperty(name = "mqtt.enabled", havingValue = "true")
 // public class TemperatureSubscriber {
 public class TemperatureMqtt {
 
@@ -56,8 +57,7 @@ public class TemperatureMqtt {
                 // String deviceId = subscribedTemperatureData.getDevice_id();
                 Double temperatureValue = Double.parseDouble(payload);
 
-                // System.out.println("Device ID: " + deviceId);
-                // System.out.println("Temperature: " + temperatureValue);
+                System.out.println("Temperature: " + temperatureValue);
                 Temperature temperature = Temperature.builder()
                         .unit("Celsius")
                         .value(temperatureValue)
@@ -66,7 +66,7 @@ public class TemperatureMqtt {
                         .setCreatedDate(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
                 // System.out.println("Created date: " + temperature.getCreatedDate());
                 // // Store the temperature in db
-                // sensorRecordingService.recordTemperature(temperature, 1L);
+                sensorRecordingService.recordTemperature(temperature, 1L);
 
                 // // // Store in Redis
                 String key = "temperature:" + "1";

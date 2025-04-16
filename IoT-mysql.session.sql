@@ -1,2 +1,2 @@
 SELECT *
-FROM temperature;
+from light;

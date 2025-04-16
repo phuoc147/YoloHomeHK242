@@ -10,7 +10,7 @@ import iot.model.Humidity;
 public interface HumidityDao extends JpaRepository<Humidity, Long> {
     // Get latest temperature by deviceId
     @Query(value = "SELECT * FROM humidity WHERE device_id = ?1 ORDER BY created_date DESC LIMIT 1", nativeQuery = true)
-    Humidity getLatesTemperatureByDeviceId(Long deviceId); // Assuming deviceId is a field in the
-                                                           // Device entity
+    Humidity getLatestHumidityByDeviceId(Long deviceId); // Assuming deviceId is a field in the
+                                                         // Device entity
 
 }
