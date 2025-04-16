@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
+import iot.dto.FaceDto;
 import iot.service.AITaskService;
 import iot.service.FaceHandlingService;
 import iot.service.impl.AITaskServiceImpl;
@@ -39,17 +40,51 @@ public class FaceRecognitionController {
     }
 
     @PostMapping("/identify")
-    public ResponseEntity<ApiResponse<Object>> startFaceRecognition() {
+    public ResponseEntity<ApiResponse<FaceDto.ConfirmIdentificationResponseDto>> startFaceRecognition() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName(); // Get the username from the security context
-
+        List<Double> embedding = faceHandlingService.getEmbeddingByUsername(username);
+        if (embedding == null) {
+            return ResponseEntity.status(401)
+                    .body(ApiResponse.<FaceDto.ConfirmIdentificationResponseDto>builder()
+                            .message("Fail to get face information")
+                            .data(FaceDto.ConfirmIdentificationResponseDto.builder()
+                                    .message("Fail to get face information")
+                                    .statusCode(0)
+                                    .message("Fail to get face information")
+                                    .build())
+                            .build());
+        }
         // Send username + embedding to FASTAPI through api
-        if (aiTaskService.sendEmbeddingForIdentification(username)) {
+        if (aiTaskService.sendEmbeddingForIdentification(username, embedding)) {
+            // return ResponseEntity.ok()
+            // .body(ApiResponse.<Object>builder().message("Fail to get face information")
+            // .data(ApiResponse.<FaceDto.ConfirmIdentificationResponseDto>builder()
+            // .message("Fail to get face information").data(
+            // FaceDto.ConfirmIdentificationResponseDto.builder()
+            // .statusCode(0)
+            // .message("Fail to get face information")
+            // .build()))
+            // .build());
             return ResponseEntity.ok()
-                    .body(ApiResponse.<Object>builder().error("Success to confirm face recognition").build());
+                    .body(ApiResponse.<FaceDto.ConfirmIdentificationResponseDto>builder()
+                            .message("Success to get face information")
+                            .data(FaceDto.ConfirmIdentificationResponseDto.builder()
+                                    .message("Fail to get face information")
+                                    .statusCode(1)
+                                    .message("Success to get face information")
+                                    .build())
+                            .build());
         } else {
             return ResponseEntity.status(401)
-                    .body(ApiResponse.<Object>builder().message("Fail to confirm face recognition").build());
+                    .body(ApiResponse.<FaceDto.ConfirmIdentificationResponseDto>builder()
+                            .message("Fail to get face information")
+                            .data(FaceDto.ConfirmIdentificationResponseDto.builder()
+                                    .message("Fail to get face information")
+                                    .statusCode(0)
+                                    .message("Fail to get face information")
+                                    .build())
+                            .build());
         }
 
     }
@@ -71,7 +106,7 @@ public class FaceRecognitionController {
     // /face/get_embedding?username={username}
     @PostMapping("/server/send_embedding")
     public ResponseEntity<ApiResponse<Object>> getEmbedding(
-            @RequestBody ApiResponse<GetEmbeddingResponse> requestBody) {
+            @RequestBody ApiResponse<FaceDto.GetEmbeddingResponseDto> requestBody) {
         List<Double> embedding = requestBody.getData().getEmbedding();
         String username = requestBody.getData().getUsername();
 
@@ -97,13 +132,4 @@ public class FaceRecognitionController {
         }
     }
 
-}
-
-@Builder
-@Getter
-@Setter
-class GetEmbeddingResponse {
-    private String username;
-    private List<Double> embedding;
-    // Getters and setters
 }

@@ -33,10 +33,9 @@ public class AITaskServiceImpl implements AITaskService {
     private FaceHandlingService faceHandlingService;
 
     @Override
-    public boolean sendEmbeddingForIdentification(String username) {
+    public boolean sendEmbeddingForIdentification(String username, List<Double> embedding) {
         try {
             // Find embedding from faceHandlingService
-            List<Double> embedding = faceHandlingService.getEmbeddingByUsername(username);
 
             String url = fastapiUrl + "/face/identify";
             ResponseEntity<ApiResponse<Object>> response = restTemplate.exchange(

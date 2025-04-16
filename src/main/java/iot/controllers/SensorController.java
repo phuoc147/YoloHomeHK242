@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -50,7 +51,7 @@ public class SensorController {
 				.build());
 	}
 
-	@PostMapping("/temperature/by-date")
+	@GetMapping("/temperature/by-date")
 	public ResponseEntity<ApiResponse<List<SensorDataDto.CurrentTemperatureResponseDto>>> getAllTemperaturesByDate(
 			@Valid @RequestParam(name = "date") String date) {
 
@@ -99,7 +100,7 @@ public class SensorController {
 
 	}
 
-	@PostMapping("/humidity/by-date")
+	@GetMapping("/humidity/by-date")
 	public ResponseEntity<ApiResponse<List<SensorDataDto.CurrentHumidityResponseDto>>> getAllHumidityByDate(
 			@RequestParam(name = "date") String date) {
 		List<Humidity> list = sensorRecordingService.getHumidityByDate(date);
@@ -144,7 +145,7 @@ public class SensorController {
 				.build());
 	}
 
-	@PostMapping("/light/by-date")
+	@GetMapping("/light/by-date")
 	public ResponseEntity<ApiResponse<List<SensorDataDto.CurrentLightResponseDto>>> getAllLightByDate(
 			@RequestParam(name = "date") String date) {
 		List<Light> list = sensorRecordingService.getLightByDate(date);
