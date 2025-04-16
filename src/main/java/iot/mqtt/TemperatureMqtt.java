@@ -6,6 +6,7 @@ import java.time.format.DateTimeFormatter;
 
 import org.eclipse.paho.client.mqttv3.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Component;
@@ -26,6 +27,8 @@ class SubscribedTemperatureData {
 }
 
 @Component
+@ConditionalOnProperty(name = "mqtt.enabled", havingValue = "true")
+// public class TemperatureSubscriber {
 public class TemperatureMqtt {
 
     @Autowired(required = false)
