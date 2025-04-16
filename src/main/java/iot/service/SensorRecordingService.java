@@ -19,8 +19,11 @@ public interface SensorRecordingService {
 
     public Light getCurrentLight(Long deviceId);
 
+    public List<Light> getLightByDate(String date);
+    
     public void recordHumidity(Humidity temperature, Long deviceId) throws Exception;
 
     public Humidity getCurrentHumidity(Long deviceId);
 
+    public List<Humidity> getHumidityByDate(String date);
 }

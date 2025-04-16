@@ -44,7 +44,7 @@ public class LightMqtt {
                 // .readValue(payload, SubscribedTemperatureData.class);
                 // String deviceId = subscribedTemperatureData.getDevice_id();
                 Double lightValue = Double.parseDouble(payload);
-
+                System.out.println("Light value: " + lightValue);
                 Light light = Light.builder()
                         .unit("%")
                         .value(lightValue)

@@ -106,7 +106,7 @@ Content-Type: application/json
 
 {
   "deviceId": "user1",
-  "action": "open"
+  "action": "off"
 }
 
 ########## USER LOGIN
@@ -145,13 +145,32 @@ Content-Type: application/json
 }
 
 ### LIST TEMPERATURE
-GET http://localhost:8070/api/temperature/by-date?date=2025-04-13
+GET http://localhost:8070/api/sensor/temperature/by-date?date=2025-04-16
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMSIsImlhdCI6MTc0NDYwMTU3MSwiZXhwIjoxNzQ0NjA1MTcxfQ.8UQDtwJzY-_-VFooQWe9WTzUYlIV-CPGkCy2EhOpwKo
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMSIsImlhdCI6MTc0NDc3MDc2MiwiZXhwIjoxNzQ0Nzc0MzYyfQ.zWcrnyrHkkmqOXuqQcZ5vl2aE8m7ESHuuloq1YYETJg
 
 {
   "message":"List of temperatures for: 2025-04-13",
   "data":[{"value":26.3,"unit":"Celsius","status":"normal","date":"2025-04-13 01:00:00"}],
   "error":null
 }
-  
+
+### LIST HUMIDITY
+GET http://localhost:8070/api/sensor/humidity/by-date?date=2025-04-13
+Content-Type: application/json
+
+{
+  "message":"List of humidity for: 2025-04-13",
+  "data":[{"value":26.3,"unit":"Celsius","status":"normal","date":"2025-04-13 01:00:00"}],
+  "error":null
+}
+
+### LIST LIGHT
+GET http://localhost:8070/api/sensor/lighttemperature/by-date?date=2025-04-13
+Content-Type: application/json
+
+{
+  "message":"List of light for: 2025-04-13",
+  "data":[{"value":26.3,"unit":"Celsius","status":"normal","date":"2025-04-13 01:00:00"}],
+  "error":null
+}
