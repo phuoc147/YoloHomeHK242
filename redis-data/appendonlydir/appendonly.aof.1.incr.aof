@@ -11466,3 +11466,192 @@ $7
 light:1
 $484
 {"lightId":13,"device":{"deviceId":1,"home":{"homeId":1,"address":"HCM","city":null,"state":null,"country":null,"zipCode":null,"houseType":null,"description":null,"createdDate":"2025-03-28T16:46:24.927668","updatedDate":"2025-03-28T16:46:24.927668"},"deviceName":"device1","deviceNumber":"123456","deviceType":"fan","deviceStatus":"I'm fine, I'm ok KINCHANA"},"value":76.0,"unit":"%","status":null,"createdDate":"2025-04-16 09:40:52.415417","updatedDate":"2025-04-16 09:40:52.415417"}
+*3
+$3
+SET
+$13
+temperature:1
+$496
+{"temperatureId":60,"device":{"deviceId":1,"home":{"homeId":1,"address":"HCM","city":null,"state":null,"country":null,"zipCode":null,"houseType":null,"description":null,"createdDate":"2025-03-28T16:46:24.927668","updatedDate":"2025-03-28T16:46:24.927668"},"deviceName":"device1","deviceNumber":"123456","deviceType":"fan","deviceStatus":"I'm fine, I'm ok KINCHANA"},"value":27.1,"unit":"Celsius","status":null,"createdDate":"2025-04-16 09:41:22.795571","updatedDate":"2025-04-16 09:41:22.795571"}
+*3
+$3
+SET
+$10
+humidity:1
+$487
+{"humidityId":15,"device":{"deviceId":1,"home":{"homeId":1,"address":"HCM","city":null,"state":null,"country":null,"zipCode":null,"houseType":null,"description":null,"createdDate":"2025-03-28T16:46:24.927668","updatedDate":"2025-03-28T16:46:24.927668"},"deviceName":"device1","deviceNumber":"123456","deviceType":"fan","deviceStatus":"I'm fine, I'm ok KINCHANA"},"value":50.4,"unit":"%","status":null,"createdDate":"2025-04-16 09:41:22.898718","updatedDate":"2025-04-16 09:41:22.898718"}
+*3
+$3
+SET
+$7
+light:1
+$484
+{"lightId":14,"device":{"deviceId":1,"home":{"homeId":1,"address":"HCM","city":null,"state":null,"country":null,"zipCode":null,"houseType":null,"description":null,"createdDate":"2025-03-28T16:46:24.927668","updatedDate":"2025-03-28T16:46:24.927668"},"deviceName":"device1","deviceNumber":"123456","deviceType":"fan","deviceStatus":"I'm fine, I'm ok KINCHANA"},"value":74.0,"unit":"%","status":null,"createdDate":"2025-04-16 09:41:22.919410","updatedDate":"2025-04-16 09:41:22.919410"}
+*3
+$3
+SET
+$13
+temperature:1
+$496
+{"temperatureId":61,"device":{"deviceId":1,"home":{"homeId":1,"address":"HCM","city":null,"state":null,"country":null,"zipCode":null,"houseType":null,"description":null,"createdDate":"2025-03-28T16:46:24.927668","updatedDate":"2025-03-28T16:46:24.927668"},"deviceName":"device1","deviceNumber":"123456","deviceType":"fan","deviceStatus":"I'm fine, I'm ok KINCHANA"},"value":27.2,"unit":"Celsius","status":null,"createdDate":"2025-04-16 09:41:53.189340","updatedDate":"2025-04-16 09:41:53.189340"}
+*3
+$3
+SET
+$10
+humidity:1
+$487
+{"humidityId":16,"device":{"deviceId":1,"home":{"homeId":1,"address":"HCM","city":null,"state":null,"country":null,"zipCode":null,"houseType":null,"description":null,"createdDate":"2025-03-28T16:46:24.927668","updatedDate":"2025-03-28T16:46:24.927668"},"deviceName":"device1","deviceNumber":"123456","deviceType":"fan","deviceStatus":"I'm fine, I'm ok KINCHANA"},"value":50.9,"unit":"%","status":null,"createdDate":"2025-04-16 09:41:53.302248","updatedDate":"2025-04-16 09:41:53.302248"}
+*3
+$3
+SET
+$7
+light:1
+$484
+{"lightId":15,"device":{"deviceId":1,"home":{"homeId":1,"address":"HCM","city":null,"state":null,"country":null,"zipCode":null,"houseType":null,"description":null,"createdDate":"2025-03-28T16:46:24.927668","updatedDate":"2025-03-28T16:46:24.927668"},"deviceName":"device1","deviceNumber":"123456","deviceType":"fan","deviceStatus":"I'm fine, I'm ok KINCHANA"},"value":74.0,"unit":"%","status":null,"createdDate":"2025-04-16 09:41:53.320470","updatedDate":"2025-04-16 09:41:53.320470"}
+*3
+$3
+SET
+$13
+temperature:1
+$496
+{"temperatureId":62,"device":{"deviceId":1,"home":{"homeId":1,"address":"HCM","city":null,"state":null,"country":null,"zipCode":null,"houseType":null,"description":null,"createdDate":"2025-03-28T16:46:24.927668","updatedDate":"2025-03-28T16:46:24.927668"},"deviceName":"device1","deviceNumber":"123456","deviceType":"fan","deviceStatus":"I'm fine, I'm ok KINCHANA"},"value":27.2,"unit":"Celsius","status":null,"createdDate":"2025-04-16 09:42:23.620500","updatedDate":"2025-04-16 09:42:23.620500"}
+*3
+$3
+SET
+$10
+humidity:1
+$487
+{"humidityId":17,"device":{"deviceId":1,"home":{"homeId":1,"address":"HCM","city":null,"state":null,"country":null,"zipCode":null,"houseType":null,"description":null,"createdDate":"2025-03-28T16:46:24.927668","updatedDate":"2025-03-28T16:46:24.927668"},"deviceName":"device1","deviceNumber":"123456","deviceType":"fan","deviceStatus":"I'm fine, I'm ok KINCHANA"},"value":50.8,"unit":"%","status":null,"createdDate":"2025-04-16 09:42:23.733866","updatedDate":"2025-04-16 09:42:23.733866"}
+*3
+$3
+SET
+$7
+light:1
+$484
+{"lightId":16,"device":{"deviceId":1,"home":{"homeId":1,"address":"HCM","city":null,"state":null,"country":null,"zipCode":null,"houseType":null,"description":null,"createdDate":"2025-03-28T16:46:24.927668","updatedDate":"2025-03-28T16:46:24.927668"},"deviceName":"device1","deviceNumber":"123456","deviceType":"fan","deviceStatus":"I'm fine, I'm ok KINCHANA"},"value":64.0,"unit":"%","status":null,"createdDate":"2025-04-16 09:42:23.753062","updatedDate":"2025-04-16 09:42:23.753062"}
+*3
+$3
+SET
+$13
+temperature:1
+$496
+{"temperatureId":63,"device":{"deviceId":1,"home":{"homeId":1,"address":"HCM","city":null,"state":null,"country":null,"zipCode":null,"houseType":null,"description":null,"createdDate":"2025-03-28T16:46:24.927668","updatedDate":"2025-03-28T16:46:24.927668"},"deviceName":"device1","deviceNumber":"123456","deviceType":"fan","deviceStatus":"I'm fine, I'm ok KINCHANA"},"value":27.3,"unit":"Celsius","status":null,"createdDate":"2025-04-16 09:42:54.034745","updatedDate":"2025-04-16 09:42:54.034745"}
+*3
+$3
+SET
+$10
+humidity:1
+$487
+{"humidityId":18,"device":{"deviceId":1,"home":{"homeId":1,"address":"HCM","city":null,"state":null,"country":null,"zipCode":null,"houseType":null,"description":null,"createdDate":"2025-03-28T16:46:24.927668","updatedDate":"2025-03-28T16:46:24.927668"},"deviceName":"device1","deviceNumber":"123456","deviceType":"fan","deviceStatus":"I'm fine, I'm ok KINCHANA"},"value":51.0,"unit":"%","status":null,"createdDate":"2025-04-16 09:42:54.145070","updatedDate":"2025-04-16 09:42:54.145070"}
+*3
+$3
+SET
+$7
+light:1
+$484
+{"lightId":17,"device":{"deviceId":1,"home":{"homeId":1,"address":"HCM","city":null,"state":null,"country":null,"zipCode":null,"houseType":null,"description":null,"createdDate":"2025-03-28T16:46:24.927668","updatedDate":"2025-03-28T16:46:24.927668"},"deviceName":"device1","deviceNumber":"123456","deviceType":"fan","deviceStatus":"I'm fine, I'm ok KINCHANA"},"value":98.0,"unit":"%","status":null,"createdDate":"2025-04-16 09:42:54.162649","updatedDate":"2025-04-16 09:42:54.162649"}
+*3
+$3
+SET
+$13
+temperature:1
+$496
+{"temperatureId":64,"device":{"deviceId":1,"home":{"homeId":1,"address":"HCM","city":null,"state":null,"country":null,"zipCode":null,"houseType":null,"description":null,"createdDate":"2025-03-28T16:46:24.927668","updatedDate":"2025-03-28T16:46:24.927668"},"deviceName":"device1","deviceNumber":"123456","deviceType":"fan","deviceStatus":"I'm fine, I'm ok KINCHANA"},"value":27.3,"unit":"Celsius","status":null,"createdDate":"2025-04-16 09:43:24.551156","updatedDate":"2025-04-16 09:43:24.551156"}
+*3
+$3
+SET
+$10
+humidity:1
+$487
+{"humidityId":19,"device":{"deviceId":1,"home":{"homeId":1,"address":"HCM","city":null,"state":null,"country":null,"zipCode":null,"houseType":null,"description":null,"createdDate":"2025-03-28T16:46:24.927668","updatedDate":"2025-03-28T16:46:24.927668"},"deviceName":"device1","deviceNumber":"123456","deviceType":"fan","deviceStatus":"I'm fine, I'm ok KINCHANA"},"value":50.4,"unit":"%","status":null,"createdDate":"2025-04-16 09:43:24.666459","updatedDate":"2025-04-16 09:43:24.666459"}
+*3
+$3
+SET
+$7
+light:1
+$484
+{"lightId":18,"device":{"deviceId":1,"home":{"homeId":1,"address":"HCM","city":null,"state":null,"country":null,"zipCode":null,"houseType":null,"description":null,"createdDate":"2025-03-28T16:46:24.927668","updatedDate":"2025-03-28T16:46:24.927668"},"deviceName":"device1","deviceNumber":"123456","deviceType":"fan","deviceStatus":"I'm fine, I'm ok KINCHANA"},"value":76.0,"unit":"%","status":null,"createdDate":"2025-04-16 09:43:24.684464","updatedDate":"2025-04-16 09:43:24.684464"}
+*3
+$3
+SET
+$13
+temperature:1
+$496
+{"temperatureId":65,"device":{"deviceId":1,"home":{"homeId":1,"address":"HCM","city":null,"state":null,"country":null,"zipCode":null,"houseType":null,"description":null,"createdDate":"2025-03-28T16:46:24.927668","updatedDate":"2025-03-28T16:46:24.927668"},"deviceName":"device1","deviceNumber":"123456","deviceType":"fan","deviceStatus":"I'm fine, I'm ok KINCHANA"},"value":27.3,"unit":"Celsius","status":null,"createdDate":"2025-04-16 09:43:54.963099","updatedDate":"2025-04-16 09:43:54.963099"}
+*3
+$3
+SET
+$10
+humidity:1
+$487
+{"humidityId":20,"device":{"deviceId":1,"home":{"homeId":1,"address":"HCM","city":null,"state":null,"country":null,"zipCode":null,"houseType":null,"description":null,"createdDate":"2025-03-28T16:46:24.927668","updatedDate":"2025-03-28T16:46:24.927668"},"deviceName":"device1","deviceNumber":"123456","deviceType":"fan","deviceStatus":"I'm fine, I'm ok KINCHANA"},"value":50.4,"unit":"%","status":null,"createdDate":"2025-04-16 09:43:55.071084","updatedDate":"2025-04-16 09:43:55.071084"}
+*3
+$3
+SET
+$7
+light:1
+$484
+{"lightId":19,"device":{"deviceId":1,"home":{"homeId":1,"address":"HCM","city":null,"state":null,"country":null,"zipCode":null,"houseType":null,"description":null,"createdDate":"2025-03-28T16:46:24.927668","updatedDate":"2025-03-28T16:46:24.927668"},"deviceName":"device1","deviceNumber":"123456","deviceType":"fan","deviceStatus":"I'm fine, I'm ok KINCHANA"},"value":74.0,"unit":"%","status":null,"createdDate":"2025-04-16 09:43:55.090423","updatedDate":"2025-04-16 09:43:55.090423"}
+*3
+$3
+SET
+$13
+temperature:1
+$496
+{"temperatureId":66,"device":{"deviceId":1,"home":{"homeId":1,"address":"HCM","city":null,"state":null,"country":null,"zipCode":null,"houseType":null,"description":null,"createdDate":"2025-03-28T16:46:24.927668","updatedDate":"2025-03-28T16:46:24.927668"},"deviceName":"device1","deviceNumber":"123456","deviceType":"fan","deviceStatus":"I'm fine, I'm ok KINCHANA"},"value":27.2,"unit":"Celsius","status":null,"createdDate":"2025-04-16 09:44:25.376267","updatedDate":"2025-04-16 09:44:25.376267"}
+*3
+$3
+SET
+$10
+humidity:1
+$487
+{"humidityId":21,"device":{"deviceId":1,"home":{"homeId":1,"address":"HCM","city":null,"state":null,"country":null,"zipCode":null,"houseType":null,"description":null,"createdDate":"2025-03-28T16:46:24.927668","updatedDate":"2025-03-28T16:46:24.927668"},"deviceName":"device1","deviceNumber":"123456","deviceType":"fan","deviceStatus":"I'm fine, I'm ok KINCHANA"},"value":52.4,"unit":"%","status":null,"createdDate":"2025-04-16 09:44:25.488987","updatedDate":"2025-04-16 09:44:25.488987"}
+*3
+$3
+SET
+$7
+light:1
+$484
+{"lightId":20,"device":{"deviceId":1,"home":{"homeId":1,"address":"HCM","city":null,"state":null,"country":null,"zipCode":null,"houseType":null,"description":null,"createdDate":"2025-03-28T16:46:24.927668","updatedDate":"2025-03-28T16:46:24.927668"},"deviceName":"device1","deviceNumber":"123456","deviceType":"fan","deviceStatus":"I'm fine, I'm ok KINCHANA"},"value":73.0,"unit":"%","status":null,"createdDate":"2025-04-16 09:44:25.504805","updatedDate":"2025-04-16 09:44:25.504805"}
+*3
+$3
+SET
+$13
+temperature:1
+$496
+{"temperatureId":67,"device":{"deviceId":1,"home":{"homeId":1,"address":"HCM","city":null,"state":null,"country":null,"zipCode":null,"houseType":null,"description":null,"createdDate":"2025-03-28T16:46:24.927668","updatedDate":"2025-03-28T16:46:24.927668"},"deviceName":"device1","deviceNumber":"123456","deviceType":"fan","deviceStatus":"I'm fine, I'm ok KINCHANA"},"value":27.3,"unit":"Celsius","status":null,"createdDate":"2025-04-16 09:44:55.825958","updatedDate":"2025-04-16 09:44:55.825958"}
+*3
+$3
+SET
+$10
+humidity:1
+$487
+{"humidityId":22,"device":{"deviceId":1,"home":{"homeId":1,"address":"HCM","city":null,"state":null,"country":null,"zipCode":null,"houseType":null,"description":null,"createdDate":"2025-03-28T16:46:24.927668","updatedDate":"2025-03-28T16:46:24.927668"},"deviceName":"device1","deviceNumber":"123456","deviceType":"fan","deviceStatus":"I'm fine, I'm ok KINCHANA"},"value":51.9,"unit":"%","status":null,"createdDate":"2025-04-16 09:44:55.949019","updatedDate":"2025-04-16 09:44:55.949019"}
+*3
+$3
+SET
+$7
+light:1
+$484
+{"lightId":21,"device":{"deviceId":1,"home":{"homeId":1,"address":"HCM","city":null,"state":null,"country":null,"zipCode":null,"houseType":null,"description":null,"createdDate":"2025-03-28T16:46:24.927668","updatedDate":"2025-03-28T16:46:24.927668"},"deviceName":"device1","deviceNumber":"123456","deviceType":"fan","deviceStatus":"I'm fine, I'm ok KINCHANA"},"value":73.0,"unit":"%","status":null,"createdDate":"2025-04-16 09:44:55.963013","updatedDate":"2025-04-16 09:44:55.963013"}
+*3
+$3
+SET
+$13
+temperature:1
+$496
+{"temperatureId":68,"device":{"deviceId":1,"home":{"homeId":1,"address":"HCM","city":null,"state":null,"country":null,"zipCode":null,"houseType":null,"description":null,"createdDate":"2025-03-28T16:46:24.927668","updatedDate":"2025-03-28T16:46:24.927668"},"deviceName":"device1","deviceNumber":"123456","deviceType":"fan","deviceStatus":"I'm fine, I'm ok KINCHANA"},"value":27.3,"unit":"Celsius","status":null,"createdDate":"2025-04-16 09:45:26.130026","updatedDate":"2025-04-16 09:45:26.130026"}
+*3
+$3
+SET
+$10
+humidity:1
+$487
+{"humidityId":23,"device":{"deviceId":1,"home":{"homeId":1,"address":"HCM","city":null,"state":null,"country":null,"zipCode":null,"houseType":null,"description":null,"createdDate":"2025-03-28T16:46:24.927668","updatedDate":"2025-03-28T16:46:24.927668"},"deviceName":"device1","deviceNumber":"123456","deviceType":"fan","deviceStatus":"I'm fine, I'm ok KINCHANA"},"value":51.6,"unit":"%","status":null,"createdDate":"2025-04-16 09:45:26.247062","updatedDate":"2025-04-16 09:45:26.247062"}
+*3
+$3
+SET
+$7
+light:1
+$484
+{"lightId":22,"device":{"deviceId":1,"home":{"homeId":1,"address":"HCM","city":null,"state":null,"country":null,"zipCode":null,"houseType":null,"description":null,"createdDate":"2025-03-28T16:46:24.927668","updatedDate":"2025-03-28T16:46:24.927668"},"deviceName":"device1","deviceNumber":"123456","deviceType":"fan","deviceStatus":"I'm fine, I'm ok KINCHANA"},"value":75.0,"unit":"%","status":null,"createdDate":"2025-04-16 09:45:26.265032","updatedDate":"2025-04-16 09:45:26.265032"}
